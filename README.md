@@ -4,19 +4,19 @@ In this repo some usuefull script to interact with the BLAST program and the NCB
 
 ### Download the reference DB
 
-To reporduce this you need to download the NCBI nucleaotide database at this links below. This is also necessary for genome/metagenome work so you want to have a local copy in your computer or HPCC server.
+To reporduce this you need to download the NCBI nucleaotide database at this links below. This is also necessary for genome/metagenome work so you want to have a local copy in your computer or HPCC server.<br>
 
-(https://ftp.ncbi.nlm.nih.gov/blast/db/nt)
+https://ftp.ncbi.nlm.nih.gov/blast/db/nt
 
 you will also need the taxdb that contain `names.dmp` and `nodes.dmp`
-for reconstructing taxonomies from taxonomy indexes.
+for reconstructing taxonomies from taxonomy indexes.<br>
 
-(https://ftp.ncbi.nlm.nih.gov/blast/db/taxdb.tar.gz)
-(https://ftp.ncbi.nlm.nih.gov/blast/db/nt.49.tar.gz)
+https://ftp.ncbi.nlm.nih.gov/blast/db/taxdb.tar.gz
+https://ftp.ncbi.nlm.nih.gov/blast/db/nt.49.tar.gz
 
-You also have `.md5` files in case you want to double check for dowloading erros.
+You also have `.md5` files in case you want to double check for dowloading erros.<br>
 
-(https://ftp.ncbi.nlm.nih.gov/blast/db/nt.49.tar.gz.md5)
+https://ftp.ncbi.nlm.nih.gov/blast/db/nt.49.tar.gz.md5
 
 ### Install softwares
 
