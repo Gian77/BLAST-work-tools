@@ -43,7 +43,7 @@ What the script does? The script BLAST a list of sequences in `.fasta` format to
 An example is reported below:
 
 ```
-sbatch BlastLocal.sb /mnt/home/benucci/BLAST_to_NCBI/otus_Stramenopila.fasta Stramenopila
+sbatch BlastLocal.sb /mnt/home/benucci/BLAST_to_NCBI/otus_Alveolata.fasta Alveolata
 ```
 
 The first field is the input file, the second is the name we will add to the name of the output result file.
