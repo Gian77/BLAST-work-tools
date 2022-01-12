@@ -1,0 +1,71 @@
+#!/bin/bash --login
+
+#SBATCH --time=03:00:00      
+#SBATCH --ntasks=1           
+#SBATCH --cpus-per-task=20   
+#SBATCH --mem=32G   
+#SBATCH --job-name  blastn
+#SBACTH -A shade-cole-bonito
+
+cd ${SLURM_SUBMIT_DIR}
+
+export BLASTDB="/mnt/home/benucci/DATABASES/NCBI_1121/"
+
+file="$1"
+organism="$2"
+
+conda activate blast_tools
+
+blastn \
+    -task megablast \
+    -num_threads $SLURM_CPUS_PER_TASK \
+    -db /mnt/home/benucci/DATABASES/NCBI_1121/nt \
+    -query $file \
+    -max_target_seqs 10 \
+    -max_hsps 10 \
+    -outfmt '6 qseqid staxids bitscore pident evalue length qlen slen qcovs qcovhsp sskingdoms scomnames sscinames sblastnames stitle' \
+    -evalue 1e-5 \
+    -perc_identity 60.00 \
+    -out results_${organism}.txt 
+
+# extract BLAST results id-taxid-bitscore-evalue-pident-coverage
+grep "OTU" results_${organism}.txt | sed '/OTU/s/\t/\|/g' | cut -f 1,2,3,5,4,9 -d "|" | sed '/OTU/s/|/\t/g' > res_${organism}.txt
+
+# extract taxids and generate taxonomy lineage form taxids
+cut -f 1,2 results_${organism}.txt | cut -f 1 -d ";" > taxids_${organism}.txt
+
+grep "OTU" taxids_${organism}.txt | cut -f 2 | taxonkit lineage -t --data-dir /mnt/home/benucci/DATABASES/NCBI_1121/ | sed 's/\t/\;/g' | cut -f 1,3,5,6,7,8,9,10 -d ";" | sed 's/;/\t/g' > taxonomy_${organism}.txt
+
+paste res_${organism}.txt taxids_${organism}.txt taxonomy_${organism}.txt > taxformat_${organism}.txt
+
+sed '1i #seqID\ttaxID\tbitscore\te-value\tp-identity\tq-coverage\tseqID\ttaxID\ttaxID\tKingdom\tPhylum\tClass\tOrder\tFamily\tGenus\tSpecies' taxformat_${organism}.txt  > table_taxformat_${organism}.txt 
+
+conda deactivate
+
+scontrol show job $SLURM_JOB_ID 
+
+# Use: sbatch BlastLocal.sb <full-path-to-file.fasta> <orgnaism rank>
+#      e.g. sbatch BlastLocal.sb /mnt/home/benucci/BLAST_to_NCBI/tax_Stramenopila.fasta Stramenopila
+
+# Blast webpage with info
+# https://www.ncbi.nlm.nih.gov/books/NBK569856/
+
+# -num_threads $SLURM_CPUS_PER_TASK \ # incompatible with remote searches
+# -outfmt "6 qseqid sseqid pident qlen length mismatch gapopen evalue bitscore qcovs sskingdom staxid ssciname staxids" \
+# -evalue 0.001 \
+# -perc_identity 60.00 \
+#  sort -u results_Alveolata.txt > results_Alveolata_sorted.txt
+
+#sed '1i #query seq-id\tsubject tax-id\tbitscore\tidentity percentage\te-value\talignment length\tquery length\tsubject length\tquery coverage/subject\tquery coverage/HSP\tkingdom\tcommon name\tscientific name\tblast name\ttitle' results_${organism}.txt  > table_results_${organism}.txt 
+
+#perl \
+#    tax_trace.pl \
+#    /mnt/home/benucci/DATABASES/NCBI_1121/nodes.dmp \
+#    /mnt/home/benucci/DATABASES/NCBI_1121/names.dmp \
+#    taxids_${organism}.txt \
+#    taxids_export_${organism}.txt
+
+# merge two txt files that were sorted before
+#grep "OTU" results_${organism}.txt | sed '/OTU/s/\t/\|/g' | cut -f 1,2,4,5,9,10 -d "|" | sed '/OTU/s/|/\t/g' | sort  > res_${organism}.txt
+#grep "OTU" taxids_export_${organism}.txt | sed '/OTU/s/\t/\|/g' | cut -f 1,5,6,7,8,11,12,13,14 -d "|" | sed '/OTU/s/|/\t/g' | sort > ids_${organism}.txt
+#paste res_${organism}.txt ids_${organism}.txt > resids_${organism}.txt
