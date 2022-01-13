@@ -11,12 +11,12 @@ https://ftp.ncbi.nlm.nih.gov/blast/db/nt
 you will also need the taxdb that contain `names.dmp` and `nodes.dmp`
 for reconstructing taxonomies from taxonomy indexes.<br>
 
-https://ftp.ncbi.nlm.nih.gov/blast/db/taxdb.tar.gz
-https://ftp.ncbi.nlm.nih.gov/blast/db/nt.49.tar.gz
+https://ftp.ncbi.nlm.nih.gov/blast/db/taxdb.tar.gz <br>
+https://ftp.ncbi.nlm.nih.gov/blast/db/nt.49.tar.gz <br>
 
 You also have `.md5` files in case you want to double check for dowloading erros.<br>
 
-https://ftp.ncbi.nlm.nih.gov/blast/db/nt.49.tar.gz.md5
+https://ftp.ncbi.nlm.nih.gov/blast/db/nt.49.tar.gz.md5 <br>
 
 ### Install softwares
 
