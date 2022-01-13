@@ -8,7 +8,7 @@ To reporduce this you need to download the NCBI nucleaotide database at this lin
 
 https://ftp.ncbi.nlm.nih.gov/blast/db/nt
 
-you will also need the taxdb that contain `names.dmp` and `nodes.dmp`
+you will also need the `taxdb` that contain `names.dmp` and `nodes.dmp`
 for reconstructing taxonomies from taxonomy indexes.<br>
 
 https://ftp.ncbi.nlm.nih.gov/blast/db/taxdb.tar.gz <br>
