@@ -9,8 +9,20 @@ To reporduce this you need to:<br>
 * download and extract the all the `nt`files present at https://ftp.ncbi.nlm.nih.gov/blast/db/<br>
 e.g. `wget https://ftp.ncbi.nlm.nih.gov/blast/db/nt.49.tar.gz`<br>
 
+<<<<<<< HEAD
 * download and extract the`taxdb.tar.gz`<br>
 * download and extract the `taxdump.tar.gz` at https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/<br>
+=======
+you will also need the `taxdb` that contain `names.dmp` and `nodes.dmp`
+for reconstructing taxonomies from taxonomy indexes.<br>
+
+https://ftp.ncbi.nlm.nih.gov/blast/db/taxdb.tar.gz <br>
+https://ftp.ncbi.nlm.nih.gov/blast/db/nt.49.tar.gz <br>
+
+You also have `.md5` files in case you want to double check for dowloading erros.<br>
+
+https://ftp.ncbi.nlm.nih.gov/blast/db/nt.49.tar.gz.md5 <br>
+>>>>>>> 233c6a8b1843179ff53cc2f6047218965eff0991
 
 ### Install softwares
 
