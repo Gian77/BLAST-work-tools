@@ -4,19 +4,13 @@ In this repo some usuefull script to interact with the BLAST program and the NCB
 
 ### Download the reference DB
 
-To reporduce this you need to download the NCBI nucleaotide database at this links below. This is also necessary for genome/metagenome work so you want to have a local copy in your computer or HPCC server.<br>
+To reporduce this you need to:<br> 
 
-https://ftp.ncbi.nlm.nih.gov/blast/db/nt
+* download and extract the all the `nt`files present at https://ftp.ncbi.nlm.nih.gov/blast/db/<br>
+e.g. `wget https://ftp.ncbi.nlm.nih.gov/blast/db/nt.49.tar.gz`<br>
 
-you will also need the taxdb that contain `names.dmp` and `nodes.dmp`
-for reconstructing taxonomies from taxonomy indexes.<br>
-
-https://ftp.ncbi.nlm.nih.gov/blast/db/taxdb.tar.gz
-https://ftp.ncbi.nlm.nih.gov/blast/db/nt.49.tar.gz
-
-You also have `.md5` files in case you want to double check for dowloading erros.<br>
-
-https://ftp.ncbi.nlm.nih.gov/blast/db/nt.49.tar.gz.md5
+* download and extract the`taxdb.tar.gz`<br>
+* download and extract the `taxdump.tar.gz` at https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/<br>
 
 ### Install softwares
 
@@ -49,4 +43,4 @@ sbatch BlastLocal.sb /mnt/home/benucci/BLAST_to_NCBI/otus_Alveolata.fasta Alveol
 The first field is the input file, the second is the name we will add to the name of the output result file.
 
 __NOTE__
-Make sure you download all the `nt.49.tar.gz` files, so check the NCBI website before, then modify the scripts accordingly. For example, now we have up to `nt.85.tar.gz`, but this will grow with NCBI growth.
+Make sure you download all the `nt.{i}.tar.gz` files, so check the NCBI website before, then modify the scripts accordingly. For example, now we have up to `nt.87.tar.gz`, but this will grow with NCBI growth.
